@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Sanu ❤️</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div id="intro">
+
+<h1 class="title">A Beautiful Story 💗</h1>
+
+<p class="subtitle">Starring...</p>
+
+<h2 class="name">✨ SANU ✨</h2>
+
+<p class="love">
+The Most Beautiful Girl In My Life ❤️
+</p>
+
+<button id="startBtn">
+Open My Heart 💖
+</button>
+
+</div>
+
+<div id="movie" style="display:none;">
+
+<audio id="music" controls autoplay loop>
+<source src="perfect.mp3" type="audio/mpeg">
+</audio>
+
+<div class="slideshow">
+
+<img src="images/1.jpg" class="slide active">
+<img src="images/2.jpg" class="slide">
+<img src="images/3.jpg" class="slide">
+<img src="images/4.jpg" class="slide">
+<img src="images/5.jpg" class="slide">
+<img src="images/6.jpg" class="slide">
+<img src="images/7.jpg" class="slide">
+<img src="images/8.jpg" class="slide">
+
+</div>
+
+<div class="text">
+
+<h1>Happy Birthday Sanu 💗</h1>
+
+<p id="typing"></p>
+
+</div>
+
+<div id="ending">
+
+<h1>🎂 HAPPY BIRTHDAY MY LOVE 💖</h1>
+
+<p>
+May your smile never fade...
+May all your dreams come true...
+Thank you for coming into my life.
+</p>
+
+<h2>Forever Yours ❤️</h2>
+
+<h1>From Your Sana 💗</h1>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#ff4d6d,#ff85a2,#ffd6e0);
+overflow:hidden;
+color:white;
+text-align:center;
+}
+
+#intro{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+animation:fadeIn 2s;
+}
+
+.title{
+font-size:50px;
+animation:zoom 2s infinite alternate;
+}
+
+.subtitle{
+margin-top:15px;
+font-size:22px;
+}
+
+.name{
+font-size:60px;
+color:#fff;
+text-shadow:0 0 20px #ff0080;
+margin:20px 0;
+}
+
+.love{
+font-size:22px;
+margin-bottom:30px;
+}
+
+button{
+padding:15px 40px;
+font-size:20px;
+border:none;
+border-radius:50px;
+background:white;
+color:#ff0066;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+}
+
+#movie{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+
+.slideshow{
+position:relative;
+width:320px;
+height:420px;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 0 30px rgba(255,255,255,.6);
+margin-bottom:20px;
+}
+
+.slide{
+position:absolute;
+width:100%;
+height:100%;
+object-fit:cover;
+opacity:0;
+transition:1.5s;
+}
+
+.slide.active{
+opacity:1;
+transform:scale(1.05);
+}
+
+.text{
+padding:20px;
+}
+
+#typing{
+font-size:22px;
+margin-top:15px;
+}
+
+#ending{
+display:none;
+padding:30px;
+animation:fadeIn 2s;
+}
+
+audio{
+margin:15px;
+}
+
+@keyframes fadeIn{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+@keyframes zoom{
+from{transform:scale(1);}
+to{transform:scale(1.1);}
+
+}const startBtn = document.getElementById("startBtn");
+const intro = document.getElementById("intro");
+const movie = document.getElementById("movie");
+const ending = document.getElementById("ending");
+const typing = document.getElementById("typing");
+
+const slides = document.querySelectorAll(".slide");
+
+const message = `Happy Birthday My Love ❤️
+
+You are the most beautiful part of my life.
+Every smile of yours makes my day brighter.
+Thank you for being you.
+
+May all your dreams come true.
+Stay happy, stay blessed.
+
+I Love You Forever 💖
+
+- Your Sana ❤️`;
+
+let i = 0;
+let j = 0;
+
+startBtn.onclick = () => {
+    intro.style.display = "none";
+    movie.style.display = "flex";
+
+    typeWriter();
+    slideShow();
+
+    setTimeout(() => {
+        ending.style.display = "block";
+    }, 42000);
+};
+
+function typeWriter() {
+    if (i < message.length) {
+        typing.innerHTML += message.charAt(i);
+        i++;
+        setTimeout(typeWriter, 60);
+    }
+}
+
+function slideShow() {
+    slides.forEach(slide => slide.classList.remove("active"));
+    slides[j].classList.add("active");
+
+    j++;
+    if (j >= slides.length) j = 0;
+
+    setTimeout(slideShow, 3000);
+}
